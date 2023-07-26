@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Menu card
     class MenuCard {
-        constructor(src, alt, title, descr, price, parentSelector) {
+        constructor(src, alt, title, descr, price, parentSelector, ...classes) {
             this.title = title;
             this.descr = descr;
             this.price = price;
@@ -153,6 +153,7 @@ window.addEventListener('DOMContentLoaded', () => {
             this.transfer = 27;
             this.changeToRUB();
             this.parent = document.querySelector(parentSelector);
+            this.classes = classes;
         }
 
         changeToRUB() {
@@ -161,6 +162,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
         render() {
             const element = document.createElement('div');
+            if (this.classes.length === 0) {
+                this.element = 'menu__item';
+                element.classList.add(this.element);
+            } else {
+                this.classes.forEach(className => element.classList.add(className));
+            }
             element.innerHTML = `
                 <div class="menu__item">
                     <img src=${this.src} alt=${this.alt}>
