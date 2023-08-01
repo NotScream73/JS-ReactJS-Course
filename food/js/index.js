@@ -193,12 +193,12 @@ window.addEventListener('DOMContentLoaded', () => {
     return await res.json();
   }
 
-  getResource('http://localhost:3000/menu')
-    .then(data => {
-      data.forEach(({ img, altimg, title, descr, price }) => {
-        new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
-      })
-    });
+  // getResource('http://localhost:3000/menu')
+  //   .then(data => {
+  //     data.forEach(({ img, altimg, title, descr, price }) => {
+  //       new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+  //     })
+  //   });
   // 2 вариант
 
   // getResource('http://localhost:3000/menu')
@@ -223,6 +223,13 @@ window.addEventListener('DOMContentLoaded', () => {
   //     document.querySelector('.menu .container').append(element);
   //   })
   // }
+
+  axios.get('http://localhost:3000/menu')
+    .then(data => {
+      data.data.forEach(({ img, altimg, title, descr, price }) => {
+        new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+      });
+    });
 
   // Forms
 
